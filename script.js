@@ -1,12 +1,3 @@
-// const countriesSection = document.getElementById('countries');
-// const toggleBtn = document.getElementById('toggle');
-// const filterBtn = document.getElementById('filter');
-// const regionFilters = filterBtn.querySelectorAll('li');
-// const searchField = document.getElementById('search');
-// const modal = document.getElementById('modal');
-// const closeBtn = document.getElementById('close');
-
-
 const searchProducts = () => {
   // show spinner 
   document.getElementById("spinner").style.display = "block";
@@ -15,6 +6,8 @@ const searchProducts = () => {
     // clear data 
     // searchField.value = "";
     if(searchField == '') {
+      document.getElementById("products").textContent = "";
+      document.getElementById("product-details").textContent = "";
         // please write something to display 
         // alert("please write something to display")
         document.getElementById('empty-input-error').style.display='block';
@@ -36,12 +29,17 @@ const searchProducts = () => {
 
 }
 
+
+// show products on main page 
+
 const displaySearchResult = (products) => {
     const searchResult = products.slice(0,20)
     // searchResult.textContent = '';
     if ( searchResult.length == 0 ) {
+      document.getElementById("products").textContent = "";
+      document.getElementById("product-details").textContent = "";
       document.getElementById("empty-input-error").style.display = "none"
-      // show search input error handle 
+      // show search input error 
       document.getElementById('no-result-error').style.display = "block"
       // hide spinner
       document.getElementById('spinner').style.display='none'
@@ -78,39 +76,6 @@ const displaySearchResult = (products) => {
 }
 };
 
-  //   // load data 
-  //   const url = `https://openapi.programming-hero.com/api/phones?search=${searchField}`;
-  //     fetch(url)
-  //       .then(res => res.json())
-  //        .then(data => displaySearchResult(data.data))
-  
-
-  //      // remove old search result
-  //     productsDiv.textContent = '';
-        
-  //      // get every phone by forEach 
-  //     searchResult?.forEach (product => {
-  //      console.log(product.data);
-  //      const div = document.createElement("div");
-  //      div.classList.add("col-12", "col-lg-4");
-  //       div.innerHTML = `
-  //             <div class="card border-0 rounded mx-auto shadow p-4" style="width:21rem">
-  //               <img src="${product.image}" class="card-img-top w-50 h-50 mx-auto mt-2 mb-3" alt="phone or watch or electric product image">
-  //               <div class="card-body">
-  //               <h5 class="card-title"> ${product.phone_name} </h5>
-  //               <p class="card-text"> ${product.brand} </p>
-  //               <button onclick="getId('${product.slug}')" class="btn btn-primary">see details</button>  
-  //               </div>
-  //           </div>
-  //            `;
-              
-  //             productsDiv.appendChild(div);
-  //             // hide spinner 
-  //             document.getElementById("spinner").style.display = "none";
-  // })
-
-        
-
 
   // get product id dynamic url function
 const getId = (id) => {
@@ -126,32 +91,36 @@ const displayDetails = (product) => {
   const detailsDiv = document.getElementById('product-details');
   detailsDiv.textContent = "";
   const div = document.createElement('div');
-  div.classList.add("row","shadow")
+  div.classList.add("row","shadow");
   div.innerHTML = `
   <div class="p-3 col-12  col-lg-6">
-      <h3 class="card-text">${product.name} </h3>
+      <h4 class="card-text">${product.name} </h4>
       <h5 class="text-danger">${product.releaseDate? product.releaseDate: 'release date not found'}</h5>
       <h5 class="card-text"> Brand: ${product.brand} </h5>
-      <img src="${product.image}" class="card-img-top" alt=""/>
+      <img src="${product.image}" class="card-img-top mt-5" alt=""/>
   </div>
 
   <div class=" p-3 col-12 col-lg-6 ">
        <ul class="list-group mb-2">
           <h5 class="text-center text-info">Main Features</h5>
-          <li class="list-group-item"><h6 class="card-text">ChipSet: ${product.mainFeatures.chipSet} </h6></li>
-          <li class="list-group-item"><h6 class="card-text">Display: ${product.mainFeatures.displaySize} </h6></li>
-          <li class="list-group-item"><h6 class="card-text">Memory: ${product.mainFeatures.memory} </h6></li>
+          <li class="list-group-item"><h6 class="card-text">ChipSet: ${product?.mainFeatures?.chipSet? product?.mainFeatures?.chipSet: 'not available'} </h6></li>
+          <li class="list-group-item"><h6 class="card-text">Display: ${product?.mainFeatures?.displaySize? product?.mainFeatures?.displaySize: 'not available'} </h6></li>
+          <li class="list-group-item"><h6 class="card-text">Memory: ${product?.mainFeatures?.memory? product?.mainFeatures?.memory: 'not available'} </h6></li>
        </ul>
-       
-       <ul class="list-group">
-          <h5 class="text-center text-info">Sensor Information</h5>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[0]} </h6></li>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[1]} </h6></li>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[2]} </h6></li>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[3]} </h6></li>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[4]} </h6></li>
-          <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors[5]} </h6></li>
-       </ul>
+
+
+
+      <ul class="list-group">
+      <h5 class="text-center text-info">Sensor Information</h5>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(0,1).map((x) => x + " ")}
+      </h6></li>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(1,2).map((x) => x + " ")}
+      </h6></li>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(2,3).map((x) => x + " ")} </h6></li>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(3,4).map((x) => x + " ")} </h6></li>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(4,5).map((x) => x + " ")} </h6></li>
+      <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(5,6).map((x) => x + " ")} </h6></li>
+   </ul>
 
        <ul class="list-group">
           <h5 class="text-center text-info"> Others Information </h5>

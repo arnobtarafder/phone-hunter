@@ -12,6 +12,8 @@
 #spinner{
     display: none;
 }
-/* body{ */
+body{
     /* overflow: hidden; */
-/* } */
+    font-family: 'Moon Dance', cursive;
+    font-family: 'Poppins', sans-serif;
+}
