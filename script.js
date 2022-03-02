@@ -1,8 +1,19 @@
+const showingSomething = () => {
+  // console.log("Yes I can");
+  document.getElementById("search-input").value = "";
+  document.getElementById("products").textContent = "";
+  document.getElementById("product-details").textContent = "";
+  document.getElementById("not-working-button").style.display = "block"
+  document.getElementById('no-result-error').style.display = 'none';
+  document.getElementById('empty-input-error').style.display = 'none';
+    // document.getElementById('spinner').style.display = 'none';
+}
+
 const searchProducts = () => {
   // show spinner 
   document.getElementById("spinner").style.display = "block";
     const searchField = document.getElementById("search-input").value;
-    // const searchText = searchField.value;
+    const searchText = searchField.value;
     // clear data 
     // searchField.value = "";
     if(searchField == '') {
@@ -10,10 +21,22 @@ const searchProducts = () => {
       document.getElementById("product-details").textContent = "";
         // please write something to display 
         // alert("please write something to display")
-        document.getElementById('empty-input-error').style.display='block';
-        document.getElementById('no-result-error').style.display='none';
+        document.getElementById('no-result-error').style.display = 'none';
+        document.getElementById('not-working-button').style.display = 'none';
+        document.getElementById('empty-input-error').style.display = 'block';
+        document.getElementById('spinner').style.display = 'none'
+      }
+
+      else if ( searchText > 0 || searchText < 0) {
+        document.getElementById("products").textContent = "";
+        document.getElementById("product-details").textContent = "";
+        document.getElementById("empty-input-error").style.display = "none"
+        // show search input error 
+        document.getElementById('number-input-error').style.display = "block"
+        // hide spinner
         document.getElementById('spinner').style.display='none'
-    }
+      }
+
     else {
       // load data 
       const url = `https://openapi.programming-hero.com/api/phones?search=${searchField}`;
@@ -25,6 +48,7 @@ const searchProducts = () => {
       document.getElementById('search-input').value = '';
       // hide empty input error
       document.getElementById('empty-input-error').style.display='none';
+      document.getElementById('not-working-button').style.display='none';
     }
 
 }
@@ -35,14 +59,15 @@ const searchProducts = () => {
 const displaySearchResult = (products) => {
     const searchResult = products.slice(0,20)
     // searchResult.textContent = '';
-    if ( searchResult.length == 0 ) {
+    if ( searchResult.length == 0) {
       document.getElementById("products").textContent = "";
       document.getElementById("product-details").textContent = "";
       document.getElementById("empty-input-error").style.display = "none"
+      document.getElementById("not-working-button").style.display = "none"
       // show search input error 
       document.getElementById('no-result-error').style.display = "block"
       // hide spinner
-      document.getElementById('spinner').style.display='none'
+      document.getElementById('spinner').style.display = 'none'
   }
 
 
@@ -52,6 +77,7 @@ const displaySearchResult = (products) => {
     const productsDiv = document.getElementById('products');
     // remove old search result
     productsDiv.textContent = '';
+    document.getElementById("product-details").textContent = "";
 
     // get every phone by forEach 
     searchResult?.forEach (product => {
@@ -93,14 +119,14 @@ const displayDetails = (product) => {
   const div = document.createElement('div');
   div.classList.add("row","shadow");
   div.innerHTML = `
-  <div class="p-3 col-12  col-lg-6">
-      <h4 class="card-text">${product.name} </h4>
+  <div class="p-3 col-12  col-lg-6" id=${"more-details"}>
+      <h4 class="card-text">${product.name? product.name: "not available"} </h4>
       <h5 class="text-danger">${product.releaseDate? product.releaseDate: 'release date not found'}</h5>
-      <h5 class="card-text"> Brand: ${product.brand} </h5>
+      <h5 class="card-text"> Brand: ${product.brand? product.brand: "not available"} </h5>
       <img src="${product.image}" class="card-img-top mt-5" alt=""/>
   </div>
 
-  <div class=" p-3 col-12 col-lg-6 ">
+  <div class=" p-3 col-12 col-lg-6 id="more-details2">
        <ul class="list-group mb-2">
           <h5 class="text-center text-info">Main Features</h5>
           <li class="list-group-item"><h6 class="card-text">ChipSet: ${product?.mainFeatures?.chipSet? product?.mainFeatures?.chipSet: 'not available'} </h6></li>
@@ -140,66 +166,16 @@ const displayDetails = (product) => {
 
 
 
+  // color changing button 
+// let changeColor   = document.getElementById('button-sleep');
+// console.log(changeColor);
+// colors      = ['black', "white"];
+// let   colorIndex  = 0;
 
+// changeColor.addEventListener('click', () => {
+// document.body.style.backgroundColor = colors[colorIndex];      
+// colorIndex = (colorIndex + 1) % colors.length
+// document.getElementById('product-div').style.backgroundColor = "#6C757D ";
+// document.getElementById('product-div').style.color = "white ";
+// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const searchPhone = () => {
-//     const searchField = document.getElementById("search-input");
-//     const searchText = searchField.value;
-//     // console.log(searchText);
-
-//     // clear data  
-//     searchField.value = "";
-//     if(searchText.value == '') {
-//         // please write something to display 
-//         alert("please write something to display")
-//     }
-//     // load data 
-//     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-
-//     console.log(url);
-//     fetch(url)
-//     .then(res => res.json())
-//     .then(data => displaySearchResult(data))
-// }
-
-// const displaySearchResult = meals => {
-//     const searchResult = document.getElementById('search-result');
-//     // searchResult.innerHTML = '';
-//     searchResult.textContent = '';
-//     // if (meals.length == 0) {
-//     //     // show no result found (homework)
-//     //     alert("show no result found")
-//     // }
-//     meals.forEach(meal => {
-//         console.log(meal.data);
-//         const div = document.createElement('div');
-//         div.classList.add('col');
-//         div.innerHTML = `
-//         <div onclick="loadMealDetail(${meal.IdMeal})" class="card h-100">
-//         <img src="${meal.strMealThumb}" class="card-img-top w-100 h-75" alt="...">
-//         <div class="card-body">
-//           <h5 class="card-title">${meal.strMeal}</h5>
-//           <p class="card-text">${meal.strInstructions.slice(0,111)}</p>
-//         </div>
-//       </div>
-//         `;
-//         searchResult.appendChild(div);
-//     })
-// }

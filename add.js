@@ -356,3 +356,24 @@ document.getElementById("search-result");
 //   `;
 //   detailsDiv.appendChild(div);
 // };
+
+
+
+
+
+
+
+
+
+
+
+
+// // toggle theme - dark & light
+// toggleBtn.addEventListener('click', () => {
+//   // console.log("hello world");
+//   document.body.classList.toggle('dark');
+//   document.getElementById("body").style.backgroundColor = "#1B2631";
+//   document.getElementById("more-details1").style.backgroundColor = "gray";
+//   document.getElementById("more-details1").style.backgroundColor = "gray";
+//   toggleBtn.style.color = "white"
+// });

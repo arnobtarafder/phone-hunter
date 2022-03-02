@@ -3,17 +3,54 @@
     display: none;
 }
   
-/* unpredictable input error  */
+/* no result input error  */
  #no-result-error{
-      display: none;
+    display: none;
 }
-  
+
+ /* number input error  */
+ #number-input-error{
+    display: none;
+ }
+
+/* not working button  */
+#not-working-button{
+    display: none;
+}
+
 /* loading spinner  */
 #spinner{
     display: none;
 }
+
+
 body{
     /* overflow: hidden; */
     font-family: 'Moon Dance', cursive;
     font-family: 'Poppins', sans-serif;
+}
+
+/* Theme button styling */
+.btn-toggle {
+	background-color: var(--bg-color);
+	border: none;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 16px;
+	width: 120px;
+}
+
+.btn-toggle .fas {
+	display: none;
+}
+
+body.dark .btn-toggle .fas {
+	display: inline-block;
+}
+
+body.dark .btn-toggle .far {
+	display: none;
 }

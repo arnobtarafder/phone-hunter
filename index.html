@@ -15,43 +15,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&family=Poppins:ital,wght@0,100;0,300;1,500&display=swap" rel="stylesheet">
     <!-- css  -->
     <link rel="stylesheet" href="style.css">
+    <!-- fas style  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+
 </head>
-<body>
-    <!-- <header class="text-center">
-		<div class="d-flex"> -->
-			<!-- <h1 class="">Phone Stocker</h1> -->
-			<!-- <button class="btn-toggle" id="toggle">
-				<i class="far fa-moon"></i>
-				<i class="fas fa-moon"></i>
-				Dark Mode
-			</button> -->
-		<!-- </div>
-	</header> -->
+<body id="body">
+    <header class="text-center bg-secondary">
+      <!-- <div class="d-flex justify-content-center">
+        <div>      
+          <button id="button-Color" class="px-4 py-1 btn btn-outline-warning font-medium">Color</button>
+        </div> -->
+
+        
+        <div class="d-flex justify-content-center ms-auto text-white">
+          <button class="btn-toggle" id="toggle button-sleep">
+            <i class="far fa-moon"></i>
+            <i class="fas fa-moon"></i>
+            Dark Mode
+          </button>  
+        </div>
+		</div>
+	</header>
 
 
 
   <main class="container">
       <!-- header section and search bar area  -->
       <header class="mt-5">
-        <h1 class="text-center mt-5 mb-4 text-capitalize">
+        <h1 id="Phone" class="text-center mt-5 mb-4 text-capitalize">
           Phone <span class="text-warning">Stalker</span>
         </h1>
 
       <!-- search bar and input section -->
         <div class="input-group mb-3 w-50 mx-auto">
           <!-- search input  -->
-          <input id="search-input" type="text" class="form-control" placeholder="search phone" aria-label="search phone"aria-describedby="button-addon2"/>
+          <input id="search-input" type="text" class="form-control" placeholder="search your product" aria-label="search phone"aria-describedby="button-addon2"/>
           <!-- search button  -->
           <button onclick="searchProducts()"class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
+       
           <!-- show all  -->
-          <button onclick="showAll()" class="btn btn-outline-secondary" type="button" id="button-addon2 search-button">Show All</button>
+          <button onclick="showingSomething()" class="btn btn-outline-secondary" type="button" id="button-addon2 showingSomething">Show All</button>
         </div>
 
         <!-- empty input error handel  -->
-        <h5 id="empty-input-error" class=" text-center text-danger"> empty! please search something </h5>
+        <h5 id="empty-input-error" class=" text-center text-danger"> empty! please search something at text </h5>
 
         <!-- no result error handle  -->
           <h5 id="no-result-error" class=" text-center text-danger" > Sorry! No result found </h5>
+          <!-- number error handle  -->
+          <h5 id="number-input-error" class="text-center text-danger">Write a product name at text</h5>
+          <!-- button is not working -->
+          <h5 id="not-working-button" class="text-center text-danger">Sorry! This button is not gonna work</h5>
 
           <!-- show product details  -->
           <div id="product-details" class=" mb-3 w-50 mx-auto  ">
