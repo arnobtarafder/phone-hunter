@@ -185,7 +185,7 @@ const displayDetails = (product) => {
 
 //   color changing button 
 let changeColor   = document.getElementById('button-Color'),
-colors      = ['#000048', '#B5C7A4', "white", 'rgb(255, 226, 231)', '#A4DADA', '#5DADE2', "white", "black", "white"];
+colors      = ['#000048', '#B5C7A4', "#A569BD", "white", "#95A5A6", 'rgb(255, 226, 231)', '#A4DADA', '#5DADE2', "#52BE80 ", "white", "black", "white", "#16A085"];
 let   colorIndex  = 0;
 
 changeColor.addEventListener('click', () => {
