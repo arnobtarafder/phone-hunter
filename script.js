@@ -121,16 +121,22 @@ const displayDetails = (product) => {
   div.innerHTML = `
   <div class="p-3 col-12  col-lg-6" id=${"more-details"}>
       <h4 class="card-text">${product.name? product.name: "not available"} </h4>
-      <h5 class="text-danger">${product.releaseDate? product.releaseDate: 'release date not found'}</h5>
+
       <h5 class="card-text"> Brand: ${product.brand? product.brand: "not available"} </h5>
+
+      <h5 id="" class="">${product.releaseDate? product.releaseDate: 'release date not found'} </h5>
+
       <img src="${product.image}" class="card-img-top mt-5" alt=""/>
   </div>
 
   <div class=" p-3 col-12 col-lg-6 id="more-details2">
        <ul class="list-group mb-2">
           <h5 class="text-center text-info">Main Features</h5>
+
           <li class="list-group-item"><h6 class="card-text">ChipSet: ${product?.mainFeatures?.chipSet? product?.mainFeatures?.chipSet: 'not available'} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">Display: ${product?.mainFeatures?.displaySize? product?.mainFeatures?.displaySize: 'not available'} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">Memory: ${product?.mainFeatures?.memory? product?.mainFeatures?.memory: 'not available'} </h6></li>
        </ul>
 
@@ -138,23 +144,34 @@ const displayDetails = (product) => {
 
       <ul class="list-group">
       <h5 class="text-center text-info">Sensor Information</h5>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(0,1).map((x) => x + " ")}
       </h6></li>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(1,2).map((x) => x + " ")}
       </h6></li>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(2,3).map((x) => x + " ")} </h6></li>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(3,4).map((x) => x + " ")} </h6></li>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(4,5).map((x) => x + " ")} </h6></li>
+
       <li class="list-group-item"><h6 class="card-text"> ${product.mainFeatures.sensors.slice(5,6).map((x) => x + " ")} </h6></li>
    </ul>
 
        <ul class="list-group">
           <h5 class="text-center text-info"> Others Information </h5>
           <li class="list-group-item"><h6 class="card-text">Bluetooth: ${product?.others?.Bluetooth? product?.others?.Bluetooth : "not available"} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">GPS: ${product?.others?.Bluetooth? product?.others?.GPS : "not available"} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">Radio: ${product?.others?.Bluetooth? product?.others?.Radio : "not available"} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">USB: ${product?.others?.Bluetooth? product?.others?.USB : "not available"} </h6></li>
+
           <li class="list-group-item"><h6 class="card-text">WLAN: ${product?.others?.Bluetooth? product?.others?.WLAN : "not available"} </h6></li>
+
        </ul>
   </div>
   `;
@@ -166,16 +183,12 @@ const displayDetails = (product) => {
 
 
 
-  // color changing button 
-// let changeColor   = document.getElementById('button-sleep');
-// console.log(changeColor);
-// colors      = ['black', "white"];
-// let   colorIndex  = 0;
+//   color changing button 
+let changeColor   = document.getElementById('button-Color'),
+colors      = ['#000048', '#B5C7A4', "white", 'rgb(255, 226, 231)', '#A4DADA', '#5DADE2', "white", "black", "white"];
+let   colorIndex  = 0;
 
-// changeColor.addEventListener('click', () => {
-// document.body.style.backgroundColor = colors[colorIndex];      
-// colorIndex = (colorIndex + 1) % colors.length
-// document.getElementById('product-div').style.backgroundColor = "#6C757D ";
-// document.getElementById('product-div').style.color = "white ";
-// });
-
+changeColor.addEventListener('click', () => {
+document.body.style.backgroundColor = colors[colorIndex];      
+colorIndex = (colorIndex + 1) % colors.length
+});
