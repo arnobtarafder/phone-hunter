@@ -1,4 +1,4 @@
-const showingSomething = () => {
+const showAll = () => {
   // console.log("Yes I can");
   document.getElementById("search-input").value = "";
   document.getElementById("products").textContent = "";
@@ -42,7 +42,7 @@ const searchProducts = () => {
       const url = `https://openapi.programming-hero.com/api/phones?search=${searchField}`;
       fetch(url)
           .then(res => res.json())
-          .then(data => displaySearchResult(data.data))
+          .then(data => displaySearchResult(data.data.slice(0,20)))
 
       //clear input
       document.getElementById('search-input').value = '';
@@ -57,9 +57,10 @@ const searchProducts = () => {
 // show products on main page 
 
 const displaySearchResult = (products) => {
-    const searchResult = products.slice(0,20)
+    const searchResult = products; //.slice(0,20);
+    const products2 = products;
     // searchResult.textContent = '';
-    if ( searchResult.length == 0) {
+    if ( searchResult.length == 0 && searchResult.length <= 20) {
       document.getElementById("products").textContent = "";
       document.getElementById("product-details").textContent = "";
       document.getElementById("empty-input-error").style.display = "none"
@@ -100,6 +101,7 @@ const displaySearchResult = (products) => {
       document.getElementById("spinner").style.display = "none";
   })
 }
+
 };
 
 

@@ -377,3 +377,24 @@ document.getElementById("search-result");
 //   document.getElementById("more-details1").style.backgroundColor = "gray";
 //   toggleBtn.style.color = "white"
 // });
+
+
+
+
+
+
+
+
+
+// if (products2.length >= 20) {
+//   // showButton.style.display = "block";
+//   let searchField = document.getElementById("search-input");
+//   let searchText = searchField.value;
+//   document.getElementById("show-all").addEventListener("click", function () {
+    
+//     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+//     fetch(url)
+//         .then((res) => res.json())
+//         .then((data) => displaySearchResult(data.data));
+//   })
+// }
