@@ -194,3 +194,13 @@ changeColor.addEventListener('click', () => {
 document.body.style.backgroundColor = colors[colorIndex];      
 colorIndex = (colorIndex + 1) % colors.length
 });
+
+
+
+document
+    .getElementById("search-input")
+    .addEventListener("keypress", function (event) {
+        if (event.key == "Enter") {
+            document.getElementById("search-button").click();
+        }
+    });
